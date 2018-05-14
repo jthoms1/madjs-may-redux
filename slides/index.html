@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Learning Redux by Creating It</title>
+    <link href="//fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+
+    </script>
+
+    <style>
+      .reveal h2 {
+        margin-bottom: 40px;
+      }
+      body > div.reveal {
+        font-family: 'Poppins', sans-serif;
+        color: #B9C0D2;
+      }
+      img.emoji {
+        width: 45px;
+      }
+      h2 img.emoji {
+        width: 52px;
+      }
+      .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5 {
+        font-family: 'Montserrat', sans-serif;
+        color: #FFF;
+        text-transform: none;
+      }
+      .reveal section img.nostyle {
+          background: none;
+          border: none;
+          box-shadow: none;
+          margin: 0;
+      }
+      .reveal section img.roundup {
+          border: 2px solid #fff;
+          height: 40px;
+    	    width: 40px;
+    	    border-radius: 23px;
+    	    display: block;
+    	    margin: -15px auto 0;
+      }
+      .example-num {
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        font-size: 0.8em;
+        color: grey;
+      }
+      b {
+        font-weight: normal;
+        color:aqua;
+      }
+      i {
+        font-style: normal;
+        color: yellow;
+      }
+      img.trans {
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h3>Learn Redux by Creating It<br/> <span class="fragment">(Kind of)</span></h3>
+          <p>
+            <small>
+              Josh Thomas / <a href="http://twitter.com/jthoms1">@jthoms1</a>
+            </small>
+            <img class="roundup" src="images/jthoms1-logo.png" />
+          </p>
+          <aside class="notes">
+            <li>If you have any questions during please interupt. It is likely if you have
+              a question others are probably thinking the same thing.
+            </li>
+          </aside>
+        </section>
+        <section>
+          <img src="images/logo-title-light.png" class="nostyle" />
+          <aside class="notes">
+            Redux is a predictable state container for JavaScript apps.
+            It helps you write applications that behave consistently,
+            run in different environments (client, server, and native),
+            and are easy to test.
+          </aside>
+        </section>
+
+        <section>
+          <h3>Why do we need it?</h3>
+          <ul>
+            <li class="fragment">Well you may not...</li>
+            <li class="fragment">Your Flux Capacitor stopped working and you need to get back to 1985</li>
+            <li class="fragment">You have a large complex application state</li>
+          </ul>
+          <aside class="notes">
+            - Redux is probably not needed in your React, Vue, Angular app.
+            - Redux gives you a rely nice feature of Time travel, ie you can step backward or forward
+              to replay changes to your application state. Awesome ability but likely your app does
+              not need this
+            - Building a really large complex application and with complex state is where Redux shines.
+              Lets learn about why that is.
+          </aside>
+        </section>
+
+        <section>
+          Presentation Intent
+          <aside>
+            Learn how redux works by building a redux clone.
+            Well kind of a very simple redux implementation.
+          </aside>
+        </section>
+
+        <section>
+          Example Simple Application
+          <aside>
+            This is a simple application that is
+            likely how you might create an easy little todo app.
+          </aside>
+        </section>
+
+        <section>
+          <h3>Seperation of concerns</h3>
+        </section>
+
+        <section>
+          <h3>Aspects that make up Redux</h3><br/><br/>
+          <ul>
+            <li>Actions</li>
+            <li>Reducer</li>
+            <li>Store</li>
+          </ul>
+        </section>
+
+        <section>
+          <section>
+            <h3>Actions</h3>
+            <ul>
+              <li>Use <b>indirection</b> to decouple.</li>
+              <li>What happened not how things change</li>
+            </ul>
+          </section>
+          <section>
+            Indirection is the ability to reference something using a name, reference, or container instead of the value itself.
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h3>Reducer</h3>
+            (current state, action name) => new state
+            do not mutate, create a new state obj
+            why, because predictable changes are <b>deterministic</b>.
+            Troubleshooting is really easy, and this makes timetravel possible
+          </section>
+          <section>
+            The reducer is a pure function that takes the previous state and an action, and returns the next state.
+          </section>
+          <section>
+            A deterministic model will thus always produce the same output from a given starting condition or initial state.
+            Deterministic system is a system in which no randomness is involved in the development of future states of the system.
+          </section>
+        </section>
+
+        <section>
+          Intial State
+          +
+          List of Previous Actions
+          =
+          Current State
+        </section>
+
+
+        <section>
+          <h2>Questions?</h2>
+          <br/>
+          <ul>
+            <li>
+              <a href="https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367">
+                https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/jthoms1/madjs-may-redux">
+                https://github.com/jthoms1/madjs-may-redux
+              </a>
+            </li>
+          </ul>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
