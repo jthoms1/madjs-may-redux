@@ -120,8 +120,8 @@
         <section>
           <h3>Why do we need it?</h3>
           <ul>
-            <li class="fragment">Well you may not...</li>
-            <li class="fragment">Your Flux Capacitor stopped working and you need to get back to 1985</li>
+            <li class="fragment">Well you may not...</li><br/>
+            <li class="fragment">Your Flux Capacitor stopped working and you need to get back to 1985</li><br/>
             <li class="fragment">You have a large complex application state</li>
           </ul>
           <aside class="notes">
@@ -135,30 +135,42 @@
         </section>
 
         <section>
-          Presentation Intent
-          <aside>
+          <h3>Presentation Intent</h3>
+          <aside class="notes">
             Learn how redux works by building a redux clone.
-            Well kind of a very simple redux implementation.
           </aside>
         </section>
 
         <section>
-          Example Simple Application
-          <aside>
+          <h3><img width=50 class="trans" src="images/warning.webp"/> Warning:</h3>
+          <p>Pseudo Code Ahead</p>
+        </section>
+
+        <section>
+          <h3>Example Simple Application:</h3>
+          <p>Baseline</p>
+          <aside class="notes">
             This is a simple application that is
             likely how you might create an easy little todo app.
           </aside>
         </section>
 
         <section>
-          <h3>Seperation of concerns</h3>
+          <section>
+            <p><b>Seperation of concerns</b> is the main point of Redux</p>
+          </section>
+          <section>
+            The value of <b>separation of concerns</b> is simplifying development and maintenance of computer programs.
+            When concerns are well-separated, individual sections can be reused, as well as developed
+            and updated independently.
+          </section>
         </section>
 
         <section>
-          <h3>Aspects that make up Redux</h3><br/><br/>
+          <h3>The pieces of Redux</h3>
           <ul>
-            <li>Actions</li>
-            <li>Reducer</li>
+            <li>Actions</li><br/>
+            <li>Reducer</li><br/>
             <li>Store</li>
           </ul>
         </section>
@@ -167,45 +179,75 @@
           <section>
             <h3>Actions</h3>
             <ul>
-              <li>Use <b>indirection</b> to decouple.</li>
-              <li>What happened not how things change</li>
+              <li>WHAT happened not HOW it happened</li><br/>
+              <li class="fragment">Use <b>indirection</b> to decouple.</li>
             </ul>
           </section>
           <section>
-            Indirection is the ability to reference something using a name, reference, or container instead of the value itself.
+            <b>Indirection</b> is the ability to reference something using a name, reference, or container instead of the value itself.
           </section>
+        </section>
+
+        <section>
+          <h3>Example Simple Application:</h3>
+          <p>Actions</p>
         </section>
 
         <section>
           <section>
             <h3>Reducer</h3>
-            (current state, action name) => new state
-            do not mutate, create a new state obj
-            why, because predictable changes are <b>deterministic</b>.
-            Troubleshooting is really easy, and this makes timetravel possible
+            <ul>
+              <li>(current state, action metadata) => new state</li><br/>
+              <li class="fragment">Do not mutate, Create a new state obj<br/>
+                why, because predictable changes are <b>deterministic</b>.
+              </li><br/>
+              <li class="fragment">Troubleshooting is really easy, and this makes timetravel possible</li>
+            </ul>
           </section>
           <section>
-            The reducer is a pure function that takes the previous state and an action, and returns the next state.
-          </section>
-          <section>
-            A deterministic model will thus always produce the same output from a given starting condition or initial state.
+            A <b>deterministic model</b> will thus always produce the same output from a given starting condition or initial state.
             Deterministic system is a system in which no randomness is involved in the development of future states of the system.
           </section>
         </section>
 
         <section>
-          Intial State
-          +
-          List of Previous Actions
-          =
-          Current State
+          <h3>Example Simple Application</h3>
+          <p>Reducer</p>
         </section>
 
+        <section>
+          <h3>Store</h3>
+          <ul>
+            <li>State retention</li>
+            <li>Pub/Sub system</li>
+          </ul>
+          <aside class="notes">
+            You can think of the store as the state retention.  It holds the connection to the data and the reducer.
+          </aside>
+        </section>
+
+        <section>
+          <h3>Example Simple Application: Actions</h3>
+          <p>State</p>
+        </section>
+
+        <section>
+          Intial State<br/>
+          +<br/>
+          List of Previous Actions<br/>
+          =<br/>
+          Current State
+        </section>
 
         <section>
           <h2>Questions?</h2>
           <br/>
           <ul>
+            <li>
+              <a href="https://redux.js.org/">
+                https://redux.js.org/
+              </a>
+            </li>
             <li>
               <a href="https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367">
                 https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367

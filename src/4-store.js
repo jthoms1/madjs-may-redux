@@ -81,6 +81,14 @@ const store = createStore(reducer, []);
 /////////
 
 class Component {
+  constructor() {
+    this.unsubscribe = store.subscribe(this.render(todos));
+  }
+
+  beforeDelete() {
+    this.unsubscribe();
+  }
+
   onClickAddTodo = (text) => {
     store.dispatch(addTodo(text));
   }
@@ -89,7 +97,7 @@ class Component {
     store.dispatch(toggleTodo(id));
   }
 
-  render() {
+  render(todos) {
     return (
       <div>
         {todos.map(todo => (
